@@ -38,10 +38,10 @@ jobs:
 
         # Deploy Web To Github Pages
       - name: Deploy Web
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                  PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-                  EXTERNAL_REPOSITORY: xmidtao/xmidtao.github.io
-                  PUBLISH_BRANCH: main
-                  PUBLISH_DIR: ./build
-                  commit_message: ${{ github.event.head_commit.message }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+            EXTERNAL_REPOSITORY: xmidtao/xmidtao.github.io
+            PUBLISH_BRANCH: main
+            PUBLISH_DIR: ./build
+            commit_message: ${{ github.event.head_commit.message }}
