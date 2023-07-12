@@ -16,8 +16,10 @@ const LandingPage: React.FC = () => {
       <main className={styles.Container}>
         <HeaderView />
         <StraightforwardView />
-        <OtherFeaturesView />
-        <StartCodingView />
+        {/*注释掉首页： OtherFeaturesView*/}
+        {/*<OtherFeaturesView />*/}
+        {/*注释掉首页：StartCodingView*/}
+        {/*<StartCodingView />*/}
         <StatsView />
         <GiveItATryView />
       </main>

@@ -8,7 +8,7 @@ const GiveItATryView: React.FC = () => {
 
   return (
     <div className={styles.Container}>
-      <h3 className={styles.Title}>Give it a Try. It's 100% free.</h3>
+      <h3 className={styles.Title}>尝试一下，它是 100% 免费。</h3>
       <Spacer height={40} />
       <div className={styles.Terminal}>
         <code>

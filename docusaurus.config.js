@@ -26,28 +26,23 @@ const customFields = {
     title: 'MidTao(中道) 研究计算机科学之道。',
     image: '/img/meta.png',
     description:
-      'An atom based global State and Logic Library implemented in Typescript, ' +
-      'offering a reimagined API that focuses on developer experience. ' +
-      'AgileTs is a more straightforward alternative to Redux ' +
-      'and allows you to easily manage your application States in React, Vue and plain Javascript.',
+      'MidTao(中道) 研究计算机科学之道, 专注于计算机核心的两个方向算法和数据库内核。',
     color: '#6c69a0',
     keywords: [
-      'state management',
-      'react',
-      'state',
-      'react state management',
-      'react native state management',
-      'react state',
-      'typescript',
-      'react state management without redux',
-      'vue',
-      'webdev',
-      'redux',
-      'recoil',
-      'mobx',
-      'javascript',
-      'software',
-      'coding',
+      'MidTao',
+      'MidTao(中道)',
+      '中道',
+      'Cloud Native Database',
+      '云原生数据库',
+      'Serverless Database',
+      'Real-Time Database',
+      'OLTP',
+      'OLAP',
+      '分析型数据库',
+      '事务型数据库',
+      '算法与数据结构',
+      'C++',
+      'Rust',
       'development',
       'engineering',
     ],
@@ -57,15 +52,15 @@ const customFields = {
   githubUrl: `${githubOrgUrl}/midtao`,
   githubDocsUrl: `${githubOrgUrl}/documentation`,
   npmCoreUrl: `${npmOrgUrl}/core`,
-  discordUrl: `https://discord.gg/T9GzreAwPH`,
+  discordUrl: `https://discord.gg/q9wYtV3e`,
   stackoverflowUrl: 'https://stackoverflow.com/questions/tagged/midtao',
-  twitterUrl: 'https://twitter.com/midtao',
+  twitterUrl: 'https://twitter.com/xmidtao',
   redditUrl: 'https://www.reddit.com/r/midtao/',
   version: '0.0.1',
   announcementBar: {
     id: 'announcement',
     content: [
-      `❓ If you have any questions, don't hesitate to join our <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/midtao">Community Discord</a> ️`,
+      `❓ If you have any questions, don't hesitate to join our <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/q9wYtV3e">Community Discord</a> ️`,
       `🎉 If you like midtao, give us a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/xmidtao/midtao">GitHub</a>`,
       `⏰ If you want to stay update to date, follow use on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/midtao">Twitter</a>`,
     ],
@@ -111,9 +106,9 @@ const config = {
     hideableSidebar: false,
     // https://docusaurus.io/docs/search#using-algolia-docsearch
     algolia: {
-      appId: '64P3EOD5L9',
-      apiKey: '461e97fe74b935316bf63af4a6a93345',
-      indexName: 'agile-ts',
+      appId: 'DJQWJI5LDM',
+      apiKey: '4597cf039c9ed7dc3ce717b5bc4caa4a',
+      indexName: 'midtao-index',
     },
     colorMode: {
       defaultMode: 'dark',
@@ -210,7 +205,7 @@ const config = {
           ],
         },
         {
-          label: 'Community',
+          label: '社区',
           position: 'left',
           items: [
             {
@@ -236,7 +231,7 @@ const config = {
           ],
         },
         {
-          label: 'Documentation',
+          label: '文档',
           position: 'left',
           to: 'docs/introduction',
         },
@@ -247,24 +242,24 @@ const config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: '文档',
           items: [
             {
-              label: 'Get Started',
+              label: '快速启动',
               to: 'docs/introduction',
             },
             {
-              label: 'Examples',
+              label: '示例',
               to: 'docs/examples',
             },
             {
-              label: 'React',
-              to: 'docs/quick-start/react',
+              label: '算法',
+              to: 'docs/algorithm/introduction',
             },
           ],
         },
         {
-          title: 'Community',
+          title: '社区',
           items: [
             {
               label: 'GitHub',
@@ -285,18 +280,10 @@ const config = {
           ],
         },
         {
-          title: 'More',
+          title: '更多',
           items: [
             {
-              label: 'Privacy Policy',
-              to: '/legal/privacy-notice',
-            },
-            {
-              label: 'Cookie Policy',
-              to: '/legal/cookie-notice',
-            },
-            {
-              label: 'Blog',
+              label: '博客',
               to: '/blog/',
             },
           ],
@@ -314,7 +301,7 @@ const config = {
             icons: 'emoji',
           },
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: `${customFields.githubDocsUrl}/tree/develop`,
+          editUrl: `${customFields.githubDocsUrl}/tree/main`,
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
           remarkPlugins: [
@@ -323,7 +310,7 @@ const config = {
         },
         blog: {
           showReadingTime: true,
-          editUrl: `${customFields.githubDocsUrl}/tree/develop`,
+          editUrl: `${customFields.githubDocsUrl}/tree/main`,
         },
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],

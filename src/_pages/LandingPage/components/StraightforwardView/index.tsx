@@ -9,71 +9,79 @@ import PlainButton from '../../../../components/buttons/PlainButton';
 const sections: SectionInterface[] = [
   {
     code: `
-const MY_STATE = createState("Jeff"); // <-
-MY_STATE.set("Frank"); // Update State value
+// 编程基础    
+SELECT '算法导论' AS BOOKS, 
+['RUST', 'C++', 'PYTHON', 'JAVA'] AS LANGUAGE;
     `,
     codeWithComment: `
-// Instantiate a global States with a single line of code
-const MY_STATE = createState("Jeff"); // <-
-MY_STATE.set("Frank"); // Update State value
+// 编程基础    
+SELECT '算法导论' AS BOOKS, 
+['RUST', 'C++', 'PYTHON', 'JAVA'] AS LANGUAGE;
     `,
-    title: 'Create State',
-    description: 'Instantiate a global State with a single line of code.',
+    title: '算法之道',
+    description: '算法导论结合力扣实战。',
     icon: 'zap',
   },
   {
     code: `
-// MyComponent.whatever
-const myState = useAgile(MY_STATE);
+// 数据库类型与存储引擎
+SELECT ['OLTP', 'OLAP', 'HTAP'] AS ENGINE, 
+['B+TREE', 'LSM-TREE'] AS STORAGE;
     `,
     codeWithComment: `
-// Dynamically bind State to UI-Components for reactivity
-const myState = useAgile(MY_STATE);
+// 数据库类型与存储引擎
+SELECT ['OLTP', 'OLAP', 'HTAP'] AS ENGINE, 
+['B+TREE', 'LSM-TREE'] AS STORAGE;
     `,
-    title: 'Subscribe UI-Component',
-    description: 'Dynamically bind State to UI-Components for reactivity.',
+    title: 'DB 内核之道',
+    description: '手撸单机数据库引擎。',
     icon: 'repeat',
   },
   {
     code: `
-MY_STATE.persist();
+// 共享文章、想法、代码、Talk
+SELECT * FROM SYSTEM.CONTRIBUTOR 
+ORDER BY COUNT LIMIT 100;
     `,
     codeWithComment: `
-// Permanently store State in the appropriate local Storage
-MY_STATE.persist();
+// 共享文章、想法、代码、Talk
+SELECT * FROM SYSTEM.CONTRIBUTOR 
+ORDER BY COUNT LIMIT 100;
     `,
-    title: 'Persist State',
-    description: 'Permanently store State in the appropriate local Storage.',
-    icon: 'server',
-  },
-  {
-    code: `
-const USERS = createCollection(); // <-
-USERS.collect({id: 1, name: "Jeff"}, ['teamA']);
-    `,
-    codeWithComment: `
-// Create a dynamic and reactive set of States
-const USERS = createCollection(); // <-
-USERS.collect({id: 1, name: "Jeff"}, ['teamA']);
-    `,
-    title: 'Collection',
-    description: 'Easily create a dynamic and reactive set of States.',
+    title: '生态之道',
+    description: 'DB 内核社区人员参与贡献。',
     icon: 'users',
   },
   {
     code: `
-const IS_AUTH = createComputed(() => {
-   return AUTH_TOKEN.exists && EXPIRATION_TIME.value > 0;
-});
+// DB 连接器，连接一切资源。
+CREATE DATABASE LINK dblink
+CONNECT TO remote_user IDENTIFIED BY password
+USING 'remote_database';
+SELECT * FROM customers@remote_database;
     `,
     codeWithComment: `
-// Compute State depending on other States  
-const IS_AUTH = createComputed(() => {
-   return AUTH_TOKEN.exists && EXPIRATION_TIME.value > 0;
-});
+// DB 连接器，连接一切资源。
+CREATE DATABASE LINK dblink
+CONNECT TO remote_user IDENTIFIED BY password
+USING 'remote_database';
+SELECT * FROM customers@remote
     `,
-    title: 'Computed State',
-    description: 'Compute State depending on other States.',
+    title: '连接之道',
+    description: '连接一切资源。',
+    icon: 'server',
+  },
+  {
+    code: `
+// 统计文档个数
+SELECT COUNT(*) FROM MIDTAO.DOCS WHERE ID > 0;
+    `,
+    codeWithComment: `
+// 统计文档个数
+SELECT COUNT(*) FROM MIDTAO.DOCS WHERE ID > 0;
+    `,
+    title: '文档之道',
+    description: '中道（MidTao）核心资产。',
     icon: 'edit',
   },
 ];
@@ -83,19 +91,18 @@ const StraightforwardView: React.FC = () => {
     <div className={styles.Container}>
       <div className={styles.Content}>
         <div className={styles.HeaderContainer}>
-          <h3 className={styles.Tagline}>Why choose us?</h3>
-          <h1 className={styles.Title}>Straightforward</h1>
+          <h3 className={styles.Tagline}>为什么你应该学习中道（MidTao）?</h3>
+          <h1 className={styles.Title}>简单 & 易懂</h1>
           <Spacer height={20} />
           <p className={styles.Description}>
-            AgileTs saves you the hassle of creating boilerplate code and offers
-            a powerful API that makes your life easier.
+            中道（MidTao) 研究算法和 DB 内核，理论与实践结合，有系统的理论知识和丰富的实战项目，DB 内核入门的绝佳选择。
           </p>
         </div>
         <Spacer height={60} />
         <SectionScroller sections={sections} startIndex={0} />
         <PlainButton
           to={'docs/introduction'}
-          name={'Learn more'}
+          name={'学习更多'}
           className={styles.LearnMoreButton}
         />
       </div>

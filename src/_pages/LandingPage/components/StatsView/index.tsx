@@ -19,8 +19,8 @@ const StatsView: React.FC = () => {
     <div className={styles.Container}>
       <div className={styles.Content}>
         <div className={styles.HeaderContainer}>
-          <h3 className={styles.Tagline}>Always Open Source.</h3>
-          <h1 className={styles.Title}>Trusted by GitHub community</h1>
+          <h3 className={styles.Tagline}>始终开源。</h3>
+          <h1 className={styles.Title}>深受 GitHub 社区信任</h1>
           <Spacer height={20} />
         </div>
         <Spacer height={windowHeight > 768 ? 60 : 20} />
