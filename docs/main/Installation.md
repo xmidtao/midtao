@@ -3,35 +3,32 @@ id: installation
 title: Installation
 sidebar_label: Installation
 slug: /installation
-description: How to install AgileTs and its plugins in various environments like React, Vue.
+description: 如何开启计算之道.
 image: img/meta.png
 ---
 
-`AgileTs` is essentially a set of node modules 
-[packages](https://github.com/agile-ts/agile/tree/master/packages) 
-that can be installed over [npm](https://www.npmjs.com/).
+`编程` 是一个伟大的工作。
 
-### 🔑 Requirements
+`编程` 之道在于勤学苦练，多动手，打牢基础知识(算法、数据结构、操作系统、编译原理、编程语言、英语)。
 
-- [Node.js](https://nodejs.org/en/) version >= 10.15.1 or above (which can be checked by running `node -v`)
+### 🔑 依赖
 
-### 🚀 Quick Start
+- [个人计算机](https://compute.org/cn/) 安装有 Linux、Unix、MacOS、Windows。
 
-To make your start as frictionless as possible, we have prepared some quick start guides for you. 
-You can follow these guides to get AgileTs up and running in your without wasting any time. 
-Below you find quick start guides for already supported UI-Frameworks.
+### 🚀 快速启动
 
-- [React / React-Native](../quick_start/React.md)
-- [Vue](../quick_start/Vue.md)
+购买一台笔记本电脑，推荐：MacBook Pro M2 14-15寸
+
+- 自带 `macOS System` （Unix 系统）
+- [编程](../quick_start/code.md)环境
 
 ### 📁 Packages
 
-Separate installation guides for particular AgileTs packages.
+编程必备工具.
 
-- [@agile-ts/core](../packages/core/Installation.md)
-- [@agile-ts/react](../packages/react/Installation.md)
-- [@agile-ts/vue](../packages/vue/Installation.md)
-- [@agile-ts/multieditor](../packages/multieditor/Installation.md)
-- [@agile-ts/api](../packages/api/Installation.md)
-- [@agile-ts/event](../packages/event/Installation.md)
+- [@tools](../packages/core/Installation.md)
+- [@Java](../packages/vue/Installation.md)
+- [@Python](../packages/multieditor/Installation.md)
+- [@Rust](../packages/api/Installation.md)
+- [@C++](../packages/event/Installation.md)
 

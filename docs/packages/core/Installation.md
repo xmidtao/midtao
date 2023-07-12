@@ -5,12 +5,8 @@ sidebar_label: Installation
 slug: /core/installation
 ---
 
-The `core` package can be installed over [npm](https://www.npmjs.com/).
+编程 `工具` 选择面比较广，个人比较推荐如下：
 
-```bash npm2yarn
-npm install @agile-ts/core 
-```
-In case you prefer following a Quick Start Guide,
-which guides you through the process of installing AgileTs in a specific UI-Framework:
-- [React/React-Native](../../quick_start/React.md)
-- [Vue](../../quick_start/Vue.md)
+- [Visual Studio Code](../../quick_start/vscode.md)
+- [IntelliJ Idea](../../quick_start/Idea.md)
+- [CLion](../../quick_start/Clion.md)

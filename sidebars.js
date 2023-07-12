@@ -14,9 +14,32 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'QUICK START',
+      label: '快速启动',
       collapsed: false,
       items: ['quick_start/react', 'quick_start/vue'],
+    },
+     {
+      type: 'category',
+      label: '算法',
+      collapsed: false,
+      items: [
+          'algorithm/introduction',
+          'algorithm/leetcode',
+          'algorithm/offer',
+          'algorithm/testbank1',
+          'algorithm/testbank2',
+          'algorithm/realbank'
+        ],
+    },
+    {
+      type: 'category',
+      label: 'DB',
+      collapsed: false,
+      items: [
+          'database/introduction',
+          'database/execution-engine',
+          'database/storage-engine',
+        ],
     },
     {
       type: 'category',

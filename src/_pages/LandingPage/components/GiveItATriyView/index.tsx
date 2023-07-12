@@ -12,12 +12,12 @@ const GiveItATryView: React.FC = () => {
       <Spacer height={40} />
       <div className={styles.Terminal}>
         <code>
-          npm install{' '}
+          git clone{' '}
           <a
             target="_blank"
             rel="noopener noreferrer"
             href={siteConfig.customFields.npmCoreUrl as any}>
-            @agile-ts/core
+            git@github.com:xmidtao/midtao.git
           </a>
         </code>
       </div>

@@ -15,12 +15,12 @@ const HeaderView: React.FC = () => {
   const { windowHeight } = useWindowSize();
   const [toTypeWords] = useState(
     shuffle([
-      'simple',
-      'straightforward',
-      'understandable',
-      'boilerplate free',
-      'flexible',
-      'fun',
+      '无为',
+      '简单',
+      '平衡',
+      '科学',
+      '算法之道',
+      '内核之道',
     ])
   );
 
@@ -30,7 +30,7 @@ const HeaderView: React.FC = () => {
       style={{ height: windowHeight > 800 ? windowHeight : undefined }}>
       <div>
         <h1 className={styles.HeaderTitle}>
-          State Management <span className={styles.SeparatorText}>made</span>
+          道法 <span className={styles.SeparatorText}>自然</span>
         </h1>
         <Spacer height={20} />
         <HeaderTyper
@@ -46,7 +46,7 @@ const HeaderView: React.FC = () => {
           <PrimaryButton
             className={styles.GetStartedButton}
             to={'/docs/introduction'}>
-            GET STARTED
+            快速启动
           </PrimaryButton>
           <GithubButton
             className={styles.GithubButton}

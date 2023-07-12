@@ -16,14 +16,14 @@ const {
 const { Event, useEvent } = require('@agile-ts/event');
 const { toast } = require('react-toastify');
 
-const githubOrgUrl = 'https://github.com/agile-ts';
-const domain = 'https://agile-ts.org';
+const githubOrgUrl = 'https://github.com/xmidtao';
+const domain = 'https://midtao.cn';
 const npmOrgUrl = 'https://www.npmjs.com/package/@agile-ts';
 
 const customFields = {
-  copyright: `Made with  💜 by <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/DevBenno">BennoDev</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.com/agile-ts/agile/graphs/contributors">these awesome people</a>`,
+  copyright: `Made with  💜 by <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/realxiliu">锡流</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.com/xmidtao/midtao/graphs/contributors">these awesome people</a>`,
   meta: {
-    title: 'An atom based state manager for JavaScript apps.',
+    title: 'MidTao(中道) 研究计算机科学之道。',
     image: '/img/meta.png',
     description:
       'An atom based global State and Logic Library implemented in Typescript, ' +
@@ -54,20 +54,20 @@ const customFields = {
   },
   domain,
   githubOrgUrl,
-  githubUrl: `${githubOrgUrl}/agile`,
+  githubUrl: `${githubOrgUrl}/midtao`,
   githubDocsUrl: `${githubOrgUrl}/documentation`,
   npmCoreUrl: `${npmOrgUrl}/core`,
   discordUrl: `https://discord.gg/T9GzreAwPH`,
-  stackoverflowUrl: 'https://stackoverflow.com/questions/tagged/agile-ts',
-  twitterUrl: 'https://twitter.com/AgileFramework',
-  redditUrl: 'https://www.reddit.com/r/AgileTs/',
+  stackoverflowUrl: 'https://stackoverflow.com/questions/tagged/midtao',
+  twitterUrl: 'https://twitter.com/midtao',
+  redditUrl: 'https://www.reddit.com/r/midtao/',
   version: '0.0.1',
   announcementBar: {
     id: 'announcement',
     content: [
-      `❓ If you have any questions, don't hesitate to join our <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/T9GzreAwPH">Community Discord</a> ️`,
-      `🎉 If you like AgileTs, give us a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/agile-ts/agile">GitHub</a>`,
-      `⏰ If you want to stay update to date, follow use on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/AgileTypescript">Twitter</a>`,
+      `❓ If you have any questions, don't hesitate to join our <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/midtao">Community Discord</a> ️`,
+      `🎉 If you like midtao, give us a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/xmidtao/midtao">GitHub</a>`,
+      `⏰ If you want to stay update to date, follow use on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/midtao">Twitter</a>`,
     ],
     random: false,
     interval: 100000,
@@ -91,14 +91,14 @@ const customFields = {
 };
 
 const config = {
-  title: 'AgileTs',
-  tagline: 'AgileTs is a global, flexible, spacy State and Logic Library',
+  title: '中道',
+  tagline: 'MidTao(中道) 研究计算机科学之道，研究方向算法和 DB 内核。',
   url: customFields.domain,
   baseUrlIssueBanner: false,
   baseUrl: '/',
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'AgileTs',
+  organizationName: 'MidTao',
   projectName: 'https://github.com/agile-ts/agile/',
   themes: ['@docusaurus/theme-live-codeblock'],
   scripts: [{ src: 'https://snack.expo.io/embed.js', async: true }], // https://github.com/expo/snack/blob/main/docs/embedding-snacks.md
@@ -136,12 +136,12 @@ const config = {
       items: [
         // left
         {
-          label: 'Get Started',
+          label: '快速启动',
           position: 'left',
           items: [
             {
-              label: 'Installation',
-              to: '/docs/installation/',
+              label: '简介',
+              to: '/docs/Introduction/',
             },
             {
               label: 'React',
@@ -154,6 +154,54 @@ const config = {
             {
               label: 'Examples',
               to: '/docs/examples/',
+            },
+          ],
+        },
+        {
+          label: '算法',
+          position: 'left',
+          items: [
+            {
+              label: '简介',
+              to: '/docs/algorithm/Introduction/',
+            },
+            {
+              label: '力扣',
+              to: '/docs/algorithm/leetcode',
+            },
+            {
+              label: '剑指 Offer',
+              to: '/docs/algorithm/offer',
+            },
+            {
+              label: '刻练库1',
+              to: '/docs/algorithm/testbank1',
+            },
+            {
+              label: '刻练库2',
+              to: '/docs/algorithm/testbank2',
+            },
+            {
+              label: '实战库',
+              to: '/docs/algorithm/realbank',
+            },
+          ],
+        },
+        {
+          label: 'DB',
+          position: 'left',
+          items: [
+            {
+              label: '简介',
+              to: '/docs/database/Introduction/',
+            },
+            {
+              label: '执行引擎',
+              to: '/docs/database/execution-engine',
+            },
+            {
+              label: '存储引擎',
+              to: '/docs/database/storage-engine',
             },
           ],
         },
