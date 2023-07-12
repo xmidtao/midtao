@@ -144,6 +144,10 @@ const config = {
               to: '/docs/Introduction/',
             },
             {
+              label: 'Code',
+              to: '/docs/quick-start/code/',
+            },
+            {
               label: 'React',
               to: '/docs/quick-start/react/',
             },

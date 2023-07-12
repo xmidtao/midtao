@@ -13,22 +13,18 @@ image: img/meta.png
 
 ### 🔑 依赖
 
-- [个人计算机](https://compute.org/cn/) 安装有 Linux、Unix、MacOS、Windows。
+- [个人计算机](https://zh.m.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6) 安装有 Linux、Unix、MacOS、Windows。
 
 ### 🚀 快速启动
 
 购买一台笔记本电脑，推荐：MacBook Pro M2 14-15寸
 
 - 自带 `macOS System` （Unix 系统）
-- [编程](../quick_start/code.md)环境
+- [编程](../docs/quick-start/code)环境
 
 ### 📁 Packages
 
 编程必备工具.
 
-- [@tools](../packages/core/Installation.md)
-- [@Java](../packages/vue/Installation.md)
-- [@Python](../packages/multieditor/Installation.md)
-- [@Rust](../packages/api/Installation.md)
-- [@C++](../packages/event/Installation.md)
+- [@tools](../docs/quick-start/code)
 
