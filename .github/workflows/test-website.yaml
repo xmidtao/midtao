@@ -1,5 +1,10 @@
 name: Test Website
 on:
+  push:
+  workflow_dispatch:
+  schedule:
+    # Runs everyday at 8:00 AM
+    - cron: "0 0 * * *"
   pull_request:
     branches: [ "*" ]
     types: [ "opened", "reopened" ]
