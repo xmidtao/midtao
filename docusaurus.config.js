@@ -94,7 +94,7 @@ const config = {
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'MidTao',
-  projectName: 'https://github.com/agile-ts/agile/',
+  projectName: 'https://github.com/xmidtao/midtao/',
   themes: ['@docusaurus/theme-live-codeblock'],
   scripts: [{ src: 'https://snack.expo.io/embed.js', async: true }], // https://github.com/expo/snack/blob/main/docs/embedding-snacks.md
   plugins: [
