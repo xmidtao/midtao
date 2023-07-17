@@ -542,7 +542,7 @@ def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         return prev
 ```
 
-### 合并两个有序链表
+### 21. 合并两个有序链表
 
 ```python
 def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:

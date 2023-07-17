@@ -2,7 +2,7 @@ module.exports = {
   docs: [
     {
       type: 'category',
-      label: 'AGILETS',
+      label: '中道(MidTao)',
       collapsed: false,
       items: [
         'main/introduction',

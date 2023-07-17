@@ -29,7 +29,7 @@ image: img/meta.png
 | [CMU 15-445](https://15445.courses.cs.cmu.edu/fall2022/) | 数据库基础              | 100%                      | 无                 		|
 | [CMU 15-721](https://15721.courses.cs.cmu.edu/spring2023/) | 数据库高级              | 10%                       | 无                   	|
 | [MIT 6.824](http://nil.csail.mit.edu/6.824/2022/)  | 分布式系统              | 100%                      | 容易忘                   |
-| [Panda](https://github.com/hebudb/panda)      | 手撸数据库                  |  5%                       |                         |
+| [Panda](https://github.com/hebudb/panda)      | 手撸数据库                  |  5%                       |                     |
 
 数据库，选择Rust/C++ 编写，有极大竞争力。
 
