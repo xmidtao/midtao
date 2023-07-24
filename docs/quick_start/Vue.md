@@ -1,9 +1,11 @@
 ---
 id: vue
-title: Vue
-sidebar_label: Vue
+title: 启动
+sidebar_label: 启动
 slug: /quick-start/vue
 ---
+
+*** TODO: 待修改，保留原有内容，学习排版及用法。 ***
 
 :::warning
 

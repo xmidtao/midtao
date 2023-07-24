@@ -46,6 +46,67 @@ SQL优化器使用两种不同的策略来生成查询执行计划：自顶向�
 * [Apache Calcite](https://calcite.apache.org)
 * [Apache Calcite Rules](https://github.com/apache/calcite/blob/main/core/src/test/java/org/apache/calcite/test/RelOptRulesTest.java)
 * [DataFusion Optimizer framework](https://github.com/apache/arrow-datafusion/issues/1972)
+* [Apache Calcite Playground](https://github.com/Fedomn/calcite-playground)
+* [Limit 下推规则](https://github.com/datafusion-contrib/datafusion-dolomite/blob/main/dolomite/src/rules/limit.rs#L42)
+
+##### Postgresql || MySQL || Spark || Calcite IN 改写优化
+
+**Semijoin/Antijoin**
+
+在prepare阶段，优化器会首先检查当前查询是否可以转换为semijoin/antijoin的条件（由于antijoin是semijoin的相反，在代码层面也是一块处理的，所以之后的论述以semijoin为主），这部分代码在SELECT_LEX::resolve_subquery中，具体的条件总结如下：
+
+* 子查询必须是谓词IN/=ANY/EXISTS的一部分，并且出现在WHERE或ON语法的最高层，可以被包含在AND表达式中。
+* 必须是单个查询块，不带有UNION。
+* 不包含HAVING语法。
+* 不包含任何聚合函数。
+* 不包含LIMIT语法。
+* 外查询语句没有使用STRAIGHT_JOIN语法。
+
+```sql
+-- 子查询判断条件的查询块：
+    SELECT ...
+    FROM ot, ...
+    WHERE oe IN (SELECT ie FROM it1 ... itN WHERE subq_where) AND outer_where
+
+-- 转换为：
+    SELECT ...
+    FROM ot SEMI JOIN (it1 ... itN), ...
+    WHERE outer_where AND subq_where AND oe=ie
+```
+
+对于不能采用semijoin/antijoin执行的存在式语义的子查询，在MySQL源码的表示含义下，会做IN->EXISTS的转换。
+
+MySQL会在prepare阶段尝试做IN->EXISTS的转换，然后在optimize阶段，比较IN or EXISTS执行的代价，最后根据代价决定采用哪种执行策略完成最终转换。
+
+在prepare阶段IN->EXISTS的转换主要是将IN语法的左表达式与右表达式中子查询的输出列对应组合，加入到子查询的WHERE或者HAVING条件中，在SQL语义上表示为：
+
+```sql
+SELECT column1, column2, ...
+FROM table1
+WHERE column1 IN (SELECT column1 FROM table2 WHERE condition);
+
+-- 转换为：
+SELECT column1, column2, ...
+FROM table1 t1
+WHERE EXISTS (SELECT 1 FROM table2 t2 WHERE t1.column1 = t2.column1 AND condition);
+```
+
+Apache Calcite 中规则如下：
+
+* PROJECT_TO_SEMI_JOIN
+* JOIN_TO_SEMI_JOIN
+* SEMI_JOIN_FILTER_TRANSPOSE
+* SEMI_JOIN_JOIN_TRANSPOSE
+* SEMI_JOIN_REMOVE
+* SemiJoinRule 类
+      - JoinToSemiJoinRule
+      - ProjectToSemiJoinRule
+      -  判断条件：project 字段和left 字段，join 字段未相交、join.getJoinType().projectsRight()
+          && !isEmptyAggregate(aggregate)、!joinInfo.isEqui() 等都不能改写或下推。
+
+没看到有类似优化规则，也可能是系统行为，只看到 IN 改成 EXISTS，没看到改写为 SEMI JOIN 的 CASE 代码。
+
+> PS：`有空，Debug 代码测试一下`。
 
 ### 分布式数据库，查询优化器中有哪些常见的 RBO 规则？
 
@@ -222,3 +283,24 @@ PG 的查询执行引擎使用基于 Tuple 的迭代模型，逐个 Tuple 地处
 * [TSO](https://zhuanlan.zhihu.com/p/338535541)
 * [HLC](https://developer.aliyun.com/article/703552)
 * [Truetime API](https://cloud.google.com/spanner/docs/true-time-external-consistency?hl=zh-cn)
+* [PolarDB-X 分布式事务的实现（三）：异步提交优化](https://zhuanlan.zhihu.com/p/411794605)
+
+
+### 线上内存泄漏有哪些排查手段
+
+开放型问题，不同语言，操作系统都有一些工具进行追踪。主要是 Debug Tools + Tracing + 监控 + 日志。
+
+### SQL 兼容性问题
+
+国内会做大量的 MySQL、PG、Oracle 语法兼容工作，甚至一个数据库兼容多种数据库语法。
+
+### Serverless Database 版本升级
+
+Proxy 连接保活，自动重连，连接池化，多租户识别转发流量。
+
+### Google Percolator vs 2PC + TSO 区别
+
+Percolator 是构建在 2PC 之上的，利用分布式 BigTable 可靠性，任意参与者做协调者，加上 MVCC 和 全局授时时间戳提供分布式快照隔离，提升了事物的并发性。
+
+2PC + TSO 协调者有单点问题，并发性能差一些，还需要持久化协调者的内存状态，挂掉再新的节点协调者节点恢复，故障会无限重试。
+

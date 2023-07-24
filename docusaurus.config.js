@@ -54,7 +54,7 @@ const customFields = {
   npmCoreUrl: `${npmOrgUrl}/core`,
   discordUrl: `https://discord.gg/q9wYtV3e`,
   stackoverflowUrl: 'https://stackoverflow.com/questions/tagged/midtao',
-  twitterUrl: 'https://twitter.com/xmidtao',
+  twitterUrl: 'https://twitter.com/realxiliu',
   redditUrl: 'https://www.reddit.com/r/midtao/',
   version: '0.0.1',
   announcementBar: {
@@ -62,7 +62,7 @@ const customFields = {
     content: [
       `❓ If you have any questions, don't hesitate to join our <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/q9wYtV3e">Community Discord</a> ️`,
       `🎉 If you like midtao, give us a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/xmidtao/midtao">GitHub</a>`,
-      `⏰ If you want to stay update to date, follow use on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/midtao">Twitter</a>`,
+      `⏰ If you want to stay update to date, follow use on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/realxiliu">Twitter</a>`,
     ],
     random: false,
     interval: 100000,
@@ -139,21 +139,17 @@ const config = {
               to: '/docs/Introduction/',
             },
             {
-              label: 'Code',
+              label: '编程',
               to: '/docs/quick-start/code/',
             },
             {
-              label: 'React',
-              to: '/docs/quick-start/react/',
+              label: '系统',
+              to: '/docs/quick-start/system/',
             },
             {
-              label: 'Style Guide',
+              label: '风格',
               to: '/docs/style-guide/',
-            },
-            {
-              label: 'Examples',
-              to: '/docs/examples/',
-            },
+            }
           ],
         },
         {

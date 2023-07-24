@@ -16,7 +16,7 @@ module.exports = {
       type: 'category',
       label: '快速启动',
       collapsed: false,
-      items: ['quick_start/react', 'quick_start/vue', 'quick_start/code'],
+      items: ['quick_start/system', 'quick_start/code', 'quick_start/vue'],
     },
      {
       type: 'category',
@@ -43,7 +43,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'PACKAGES',
+      label: 'Postgres',
       collapsed: false,
       items: [
         {
@@ -198,12 +198,19 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'EXAMPLES',
+      label: 'MySQL',
       items: [
         'examples/introduction',
         'examples/react/introduction',
         'examples/react-native/introduction',
         'examples/vue/introduction',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Velox',
+      items: [
+        'velox/introduction',
       ],
     },
     'interfaces',

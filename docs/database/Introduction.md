@@ -11,8 +11,20 @@ image: img/meta.png
 
 ### 🔑 道法自然
 
-- 基础：CMU 15-445 + CMU 15-721 + 数据库系统概念
-- 练习：PostgreSQL 源码 + 自制单机数据库
+- 基础：
+	+ 数据库系统概念（书）
+	+ CMU 15-445 
+	+ CMU 15-721 
+	
+- 源码：
+	+ PostgreSQL 源码
+		* [Postgres](https://github.com/postgres/postgres)
+		* [Noen: Serverless Postgres](https://github.com/neondatabase/neon)
+	+ [MySQL 源码](https://github.com/mysql/mysql-server)
+	+ [PrestoDB](https://github.com/prestodb/presto) + [Velox](https://github.com/facebookincubator/velox) 源码
+	
+- 工程：
+	+ 自制单机 OLTP 数据库
 
 ### 📅 计划
 
@@ -28,8 +40,8 @@ image: img/meta.png
 | ---------------- | ----------------------- | ------------------------ | -------------------------|
 | [CMU 15-445](https://15445.courses.cs.cmu.edu/fall2022/) | 数据库基础              | 100%                      | 无                 		|
 | [CMU 15-721](https://15721.courses.cs.cmu.edu/spring2023/) | 数据库高级              | 10%                       | 无                   	|
-| [MIT 6.824](http://nil.csail.mit.edu/6.824/2022/)  | 分布式系统              | 100%                      | 容易忘                   |
-| [Panda](https://github.com/hebudb/panda)      | 手撸数据库                  |  5%                       |                     |
+| [MIT 6.824](http://nil.csail.mit.edu/6.824/2022/)  | 分布式系统              | 100%                      | 容易忘, 曾学过            |
+| [Panda](https://github.com/hebudb/panda)      | 手撸数据库              |  5%                       |                          |
 
 数据库，选择Rust/C++ 编写，有极大竞争力。
 
@@ -46,7 +58,7 @@ image: img/meta.png
 
 必备技能。
 
-- 编程语言
+- 编程语言（Python/Java/C++/Rust）
 - 计算机基础
 - 算法基础
 
