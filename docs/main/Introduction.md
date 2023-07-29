@@ -1,7 +1,7 @@
 ---
 id: introduction
-title: Introducing AgileTs
-sidebar_label: Introduction
+title: 简介
+sidebar_label: 简介
 slug: /introduction
 description: An atom based global State and Logic Library implemented in Typescript, offering a reimagined API that focuses on developer experience. The AgileTs state management functionality can be used in various frameworks like React, Vue and plain Javascript.
 image: img/meta.png

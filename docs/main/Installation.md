@@ -1,7 +1,7 @@
 ---
 id: installation
-title: Installation
-sidebar_label: Installation
+title: 安装
+sidebar_label: 安装
 slug: /installation
 description: 如何开启计算之道.
 image: img/meta.png

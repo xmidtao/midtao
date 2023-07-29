@@ -2,7 +2,7 @@
 id: introduction
 title: React Examples
 sidebar_label: React
-slug: /examples/react
+slug: /mysql/react
 ---
 
 ## 🤠 Get Started

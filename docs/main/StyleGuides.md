@@ -1,7 +1,7 @@
 ---
 id: style-guide
-title: Style Guides
-sidebar_label: Style Guides
+title: 风格
+sidebar_label: 风格
 slug: /style-guide
 description: Contributions to AgileTs can be made with little effort and are very welcome. We look forward to your input.
 image: img/meta.png

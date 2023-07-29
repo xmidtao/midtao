@@ -2,7 +2,7 @@ module.exports = {
   docs: [
     {
       type: 'category',
-      label: '中道(MidTao)',
+      label: '中道',
       collapsed: false,
       items: [
         'main/introduction',
@@ -15,13 +15,13 @@ module.exports = {
     {
       type: 'category',
       label: '快速启动',
-      collapsed: false,
+      collapsed: true,
       items: ['quick_start/system', 'quick_start/code', 'quick_start/vue'],
     },
      {
       type: 'category',
       label: '算法',
-      collapsed: false,
+      collapsed: true,
       items: [
           'algorithm/introduction',
           'algorithm/leetcode',
@@ -34,7 +34,7 @@ module.exports = {
     {
       type: 'category',
       label: 'DB',
-      collapsed: false,
+      collapsed: true,
       items: [
           'database/introduction',
           'database/execution-engine',
@@ -43,8 +43,33 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Panda',
+      collapsed: true,
+      items: [
+        'panda/introduction',
+        {
+          type: 'category',
+          label: '优化器',
+          items: [
+            'panda/optimizer/introduction',
+            'panda/optimizer/architecture',
+            {
+              type: 'category',
+              label: '实现',
+              items: [
+                'panda/optimizer/impl/frameworks',
+                'panda/optimizer/impl/rbo',
+                'panda/optimizer/impl/cbo',
+              ],
+            },
+          ]
+        }
+      ],
+    },
+    {
+      type: 'category',
       label: 'Postgres',
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: 'category',
@@ -199,16 +224,19 @@ module.exports = {
     {
       type: 'category',
       label: 'MySQL',
+      collapsed: true,
       items: [
-        'examples/introduction',
-        'examples/react/introduction',
-        'examples/react-native/introduction',
-        'examples/vue/introduction',
+        'mysql/introduction',
+        'mysql/basic/installation',
+        'mysql/react/introduction',
+        'mysql/react-native/introduction',
+        'mysql/vue/introduction',
       ],
     },
     {
       type: 'category',
       label: 'Velox',
+      collapsed: true,
       items: [
         'velox/introduction',
       ],

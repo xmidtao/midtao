@@ -10,3 +10,7 @@ Volox 是分布式查询引擎 PrestoDB Worker 的 C++ 版本，PrestoDB 原生 
 ## 🚀 Quick Links
 - [Velox](https://github.com/facebookincubator/velox)
 - [PrestoDB](https://github.com/prestodb/presto)
+
+## 🍎 附录
+
+* [1. Presto + Velox 环境搭建](https://zhuanlan.zhihu.com/p/614285711)

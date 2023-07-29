@@ -23,7 +23,7 @@ image: img/meta.png
 | [CMU 15-213 CSAPP](http://csapp.cs.cmu.edu/) | 计算机系统简介     |          0%              | 无                  |
 | [MIT 6.006](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/)        | 算法与数据结构     |          0%              | 无                    |
 
-- leetcode: 500 题  30%
+- leetcode: 500 题  30% （当前：185 题）
 
 | 		名称 	   |       内容              | 进度                      |备注           | 
 | ---------------- | ----------------------- | ------------------------ | -------------------------|
