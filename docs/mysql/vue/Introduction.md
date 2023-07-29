@@ -6,5 +6,5 @@ slug: /mysql/vue
 ---
 
 ## 🤠 Get Started
-- [First State](./vue/first-state)
-- [First Collection](./vue/first-collection)
+- [First State]
+- [First Collection]

@@ -6,4 +6,4 @@ slug: /mysql/react-native
 ---
 
 ## 🤠 Get Started
-- [First State](./react-native/first-state)
+- [First State]
