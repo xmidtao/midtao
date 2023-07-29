@@ -61,7 +61,7 @@ in our [Style Guides](./StyleGuides.md).
 Learn the powerful tools of AgileTs in a short period of time. 
 An excellent place to start are our [Quick Start Guides](./Installation.md), 
 or if you don't like to follow tutorials,
-you can jump straight into the [Example section](../examples/Introduction.md).
+you can jump straight into the [Example section](../mysql/Introduction.md).
 
 
 ## ⏳ Quick Example {#quick-example}
@@ -98,7 +98,7 @@ It's only one click away. Just select your preferred UI-Framework below.
 - [React-Native](https://snack.expo.io/@bennodev/agilets-first-state)
 - [Vue](https://codesandbox.io/s/agilets-first-state-i5xxs)
 
-More examples can be found in the [Example section](../examples/Introduction.md).
+More examples can be found in the [Example section](../mysql/Introduction.md).
 
 ## 👨‍💻 When using AgileTs {#when-using-agilets}
 
