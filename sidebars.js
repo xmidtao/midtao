@@ -71,6 +71,8 @@ module.exports = {
       label: 'Postgres',
       collapsed: true,
       items: [
+        'packages/introduction',
+        'packages/installation',
         {
           type: 'category',
           label: 'core',
@@ -239,6 +241,14 @@ module.exports = {
       collapsed: true,
       items: [
         'velox/introduction',
+      ],
+    },
+       {
+      type: 'category',
+      label: '其他',
+      collapsed: true,
+      items: [
+        'other/diyhost',
       ],
     },
     'interfaces',

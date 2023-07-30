@@ -1,7 +1,7 @@
 ---
 id: introduction
-title: 介绍
-sidebar_label: 介绍
+title: 简介
+sidebar_label: 简介
 slug: /mysql
 ---
 
