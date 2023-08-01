@@ -57,7 +57,7 @@ Cascades 基于 Volcano 做了诸多改进，二者出自同一作者（Goetz Gr
 
 词法分析 & 语法解析输出 SqlTree(抽象语法树）: SQL Query -> SQL Rewriter(可选) ->  Parser
 
-Binder 阶段输出 Logical Plan：读取 Catalog Metadata 数据，进行验证，比如：Database、Table、Columns、Index、Functions 等是否存在；
+Binder 阶段输出 Logical Plan：读取 Catalog Metadata 数据，列名重写为ID 等；验证 Database、Table、Columns、Index、Functions 等合法性；
 抽象语法树组装成 Logical Plan Tree，逻辑执行计划的起点。
 
 Tree Rewriter(可选）：结合 Scheme Info 进行 Tree Rewriter （可选择)，做一些语法兼容，比如：兼容 MySQL/Oracle 语法等，把其他系统查询语法树改写为当前系统能识别的查询语法树，
@@ -68,6 +68,10 @@ Optimizer(优化)：结合 Catalog Schema 信息进行启发式/规则 RBO 优�
 
 优化器只能在有限的时间内，找到相对较优的执行计划，而一个 SQL 查询，特别是 TP 场景，毫秒级响应，给优化器预留的时间有限，查找最优执行计划大多是基于规则的优化，成本模型优化较少。
 而 AP 场景，则会有不同的侧重点，优化器的设计上 AP 和 TP 也可以有正对性的一些优化。
+
+:::note
+Logical Plan和 Physical Plan 是存在差异的，并不是 1:1 的映射关系，Physical Plan 某些场景需排序、压缩等会增加一些新的节点，而 SQL 未显示指定。
+:::
 
 ### 查询优化1
 

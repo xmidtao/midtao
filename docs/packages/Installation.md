@@ -156,6 +156,19 @@ Debug 方便研究执行计划以及复杂 SQL 的处理流程，直接在 MYSQL
 
 请参考 [MySQL 安装](../mysql/basic/installation#-tpch)，自行准备 PG TPCH 库和表数据。
 
+* 加载 TPCH 数据
+
+```sql
+\copy nation from '~/data/codelabs/tpch-dbgen/data/nation.tbl' DELIMITER '|';
+\copy region from '~/data/codelabs/tpch-dbgen/data/region.tbl' DELIMITER '|';
+\copy customer from '~/data/codelabs/tpch-dbgen/data/customer.tbl' DELIMITER '|';
+\copy lineitem from '~/data/codelabs/tpch-dbgen/data/lineitem.tbl' DELIMITER '|';
+\copy orders from '~/data/codelabs/tpch-dbgen/data/orders.tbl' DELIMITER '|';
+\copy partsupp from '~/data/codelabs/tpch-dbgen/data/partsupp.tbl' DELIMITER '|';
+\copy part from '~/data/codelabs/tpch-dbgen/data/part.tbl' DELIMITER '|';
+\copy supplier from '~/data/codelabs/tpch-dbgen/data/supplier.tbl' DELIMITER '|';
+```
+
 ## 🐞 GDB/LLDB 调试
 
 我使用的是 MAC 系统，一般都使用 LLDB 进行调试。
@@ -181,29 +194,175 @@ Breakpoint 1: no locations (pending).
 ### In 查询
 
 ```sql
-
-
+tpch=# explain select * from nation where n_regionkey in (select r_regionkey from region);
+                             QUERY PLAN
+---------------------------------------------------------------------
+ Hash Join  (cost=13.82..25.98 rows=170 width=434)
+   Hash Cond: (nation.n_regionkey = region.r_regionkey)
+   ->  Seq Scan on nation  (cost=0.00..11.70 rows=170 width=434)
+   ->  Hash  (cost=11.70..11.70 rows=170 width=4)
+         ->  Seq Scan on region  (cost=0.00..11.70 rows=170 width=4)
+(5 rows)
 ```
 
 ### `=Any` 查询
 
 ```sql
+tpch=# explain select * from nation where n_regionkey = (select distinct r_regionkey from region);
+                              QUERY PLAN
+-----------------------------------------------------------------------
+ Seq Scan on nation  (cost=13.82..25.95 rows=1 width=434)
+   Filter: (n_regionkey = $0)
+   InitPlan 1 (returns $0)
+     ->  HashAggregate  (cost=12.12..13.82 rows=170 width=4)
+           Group Key: region.r_regionkey
+           ->  Seq Scan on region  (cost=0.00..11.70 rows=170 width=4)
+(6 rows)
 ```
 
 ### Exists 查询
 
 ```sql
-
+tpch=# explain select * from nation where exists (select 1 from region where nation.n_regionkey = region.r_regionkey);
+                             QUERY PLAN
+---------------------------------------------------------------------
+ Hash Join  (cost=13.82..25.98 rows=170 width=434)
+   Hash Cond: (nation.n_regionkey = region.r_regionkey)
+   ->  Seq Scan on nation  (cost=0.00..11.70 rows=170 width=434)
+   ->  Hash  (cost=11.70..11.70 rows=170 width=4)
+         ->  Seq Scan on region  (cost=0.00..11.70 rows=170 width=4)
+(5 rows)
 ```
 
 ### 其他
 
 1=0，优化后直接返回。
+```sql
+tpch=# EXPLAIN SELECT * FROM region WHERE 1=0;
+                QUERY PLAN
+------------------------------------------
+ Result  (cost=0.00..0.00 rows=0 width=0)
+   One-Time Filter: false
+(2 rows)
+
+tpch=# EXPLAIN SELECT * FROM region WHERE 1=1 Limit 10;
+                           QUERY PLAN
+-----------------------------------------------------------------
+ Limit  (cost=0.00..0.69 rows=10 width=430)
+   ->  Seq Scan on region  (cost=0.00..11.70 rows=170 width=430)
+(2 rows)
+
+
+tpch=# EXPLAIN SELECT * FROM region WHERE 1=1 and r_name = 'a' and r_comment = 'xxx' Limit 10;
+                                   QUERY PLAN
+--------------------------------------------------------------------------------
+ Limit  (cost=0.00..12.55 rows=1 width=430)
+   ->  Seq Scan on region  (cost=0.00..12.55 rows=1 width=430)
+         Filter: ((r_name = 'a'::bpchar) AND ((r_comment)::text = 'xxx'::text))
+(3 rows)
+
+tpch=# EXPLAIN SELECT count(*) FROM region WHERE 1=1 and r_name = 'a' and r_comment = 'xxx';
+                                   QUERY PLAN
+--------------------------------------------------------------------------------
+ Aggregate  (cost=12.55..12.56 rows=1 width=8)
+   ->  Seq Scan on region  (cost=0.00..12.55 rows=1 width=0)
+         Filter: ((r_name = 'a'::bpchar) AND ((r_comment)::text = 'xxx'::text))
+(3 rows)
+```
+
+### 并行查询
+
+
+查询并行 worker 个数，进行修改为 4 个 workers。
 
 ```sql
+tpch=# show max_parallel_workers_per_gather;
+ max_parallel_workers_per_gather
+---------------------------------
+ 2
+(1 row)
+
+tpch=# alter system set max_parallel_workers_per_gather=4;
+ALTER SYSTEM
+
+tpch=# show min_parallel_table_scan_size;
+ min_parallel_table_scan_size
+------------------------------
+ 8MB
+(1 row)
+
+tpch=# show min_parallel_index_scan_size ;
+ min_parallel_index_scan_size
+------------------------------
+ 512kB
+(1 row)
+
+## Query 2 from TPC-H
+tpch=# explain (costs off) select s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment
+from    part, supplier, partsupp, nation, region
+where
+        p_partkey = ps_partkey
+        and s_suppkey = ps_suppkey
+        and p_size = 36
+        and p_type like '%BRASS'
+        and s_nationkey = n_nationkey
+        and n_regionkey = r_regionkey
+        and r_name = 'AMERICA'
+        and ps_supplycost = (
+                select
+                        min(ps_supplycost)
+                from    partsupp, supplier, nation, region
+                where
+                        p_partkey = ps_partkey
+                        and s_suppkey = ps_suppkey
+                        and s_nationkey = n_nationkey
+                        and n_regionkey = r_regionkey
+                        and r_name = 'AMERICA'
+        )
+order by s_acctbal desc, n_name, s_name, p_partkey
+LIMIT 100;
+                                                           QUERY PLAN
+--------------------------------------------------------------------------------------------------------------------------------
+ Limit
+   ->  Sort
+         Sort Key: supplier.s_acctbal DESC, nation.n_name, supplier.s_name, part.p_partkey
+         ->  Nested Loop
+               ->  Nested Loop
+                     ->  Nested Loop
+                           ->  Hash Join
+                                 Hash Cond: ((part.p_partkey = partsupp.ps_partkey) AND ((SubPlan 1) = partsupp.ps_supplycost))
+                                 ->  Seq Scan on part
+                                       Filter: (((p_type)::text ~~ '%BRASS'::text) AND (p_size = 36))
+                                 ->  Hash
+                                       ->  Seq Scan on partsupp
+                                 SubPlan 1
+                                   ->  Aggregate
+                                         ->  Nested Loop
+                                               ->  Nested Loop
+                                                     ->  Nested Loop
+                                                           ->  Index Scan using partsupp_pkey on partsupp partsupp_1
+                                                                 Index Cond: (ps_partkey = part.p_partkey)
+                                                           ->  Index Scan using supplier_pkey on supplier supplier_1
+                                                                 Index Cond: (s_suppkey = partsupp_1.ps_suppkey)
+                                                     ->  Index Scan using nation_pkey on nation nation_1
+                                                           Index Cond: (n_nationkey = supplier_1.s_nationkey)
+                                               ->  Index Scan using region_pkey on region region_1
+                                                     Index Cond: (r_regionkey = nation_1.n_regionkey)
+                                                     Filter: (r_name = 'AMERICA'::bpchar)
+                           ->  Index Scan using supplier_pkey on supplier
+                                 Index Cond: (s_suppkey = partsupp.ps_suppkey)
+                     ->  Index Scan using nation_pkey on nation
+                           Index Cond: (n_nationkey = supplier.s_nationkey)
+               ->  Index Scan using region_pkey on region
+                     Index Cond: (r_regionkey = nation.n_regionkey)
+                     Filter: (r_name = 'AMERICA'::bpchar)
+(33 rows)
+
 ```
 
 ## 📄 参考
 
 * [LLDB 使用](https://lldb.llvm.org/use/tutorial.html)
 * [How to Debug Postgres using LLDB on a Mac](https://gist.github.com/patshaughnessy/70519495343412504686)
+* [PG TPCH 测试](https://help.aliyun.com/document_detail/156160.html)
+
