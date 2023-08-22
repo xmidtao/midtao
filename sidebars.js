@@ -43,7 +43,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Panda',
+      label: 'Hetu',
       collapsed: true,
       items: [
         'panda/introduction',
@@ -62,6 +62,14 @@ module.exports = {
                 'panda/optimizer/impl/cbo',
               ],
             },
+          ]
+        },
+        {
+          type: 'category',
+          label: '执行器',
+          items: [
+            'panda/execution/introduction',
+            'panda/execution/parallel_hash_join_algorithms',
           ]
         }
       ],
@@ -237,10 +245,11 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Velox',
+      label: 'Presto/Velox',
       collapsed: true,
       items: [
         'velox/introduction',
+        'velox/installation',
       ],
     },
        {

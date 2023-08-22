@@ -285,7 +285,6 @@ PG 的查询执行引擎使用基于 Tuple 的迭代模型，逐个 Tuple 地处
 * [Truetime API](https://cloud.google.com/spanner/docs/true-time-external-consistency?hl=zh-cn)
 * [PolarDB-X 分布式事务的实现（三）：异步提交优化](https://zhuanlan.zhihu.com/p/411794605)
 
-
 ### 线上内存泄漏有哪些排查手段
 
 开放型问题，不同语言，操作系统都有一些工具进行追踪。主要是 Debug Tools + Tracing + 监控 + 日志。
@@ -303,4 +302,8 @@ Proxy 连接保活，自动重连，连接池化，多租户识别转发流量�
 Percolator 是构建在 2PC 之上的，利用分布式 BigTable 可靠性，任意参与者做协调者，加上 MVCC 和 全局授时时间戳提供分布式快照隔离，提升了事物的并发性。
 
 2PC + TSO 协调者有单点问题，并发性能差一些，还需要持久化协调者的内存状态，挂掉再新的节点协调者节点恢复，故障会无限重试。
+
+### Volcano/Cascades 优化器？
+
+减少两者的异同以及 Cascades 做了哪些工程上的优化。
 

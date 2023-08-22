@@ -13,7 +13,7 @@ Panda 是一个教育目的的 OLTP 单机数据库，采用 Serverless 架构�
 * Buffer Pool（缓存池）
 * 存储引擎
 	- In-Memory Storage
-	- LSM-Tree For S3
+	- LSM-Tree On S3
 
 我们会研究主流 OLTP 数据库的设计与实现，MySQL、 PG 以及 Rust 生态数据库。
 

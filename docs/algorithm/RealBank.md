@@ -7,9 +7,11 @@ description: 实战库。
 image: img/meta.png
 ---
 
+实战库中，写出来的 ✅，未完成 ❎
+
 ## 算法题目
 
-### 1. 一段连续内存数组中，快速删除某个值，存在重复值  中等
+### ✅ 1. 一段连续内存数组中，快速删除某个值，存在重复值  中等
 
 ```py
 class Solutions:
@@ -61,7 +63,7 @@ class Solutions:
         return nums
 ```
 
-### [86. 分隔链表](https://leetcode.cn/problems/partition-list/) 中等
+### ✅ 力扣 [86. 分隔链表](https://leetcode.cn/problems/partition-list/) 中等
 
 ```py
 # Definition for singly-linked list.
@@ -99,7 +101,7 @@ class Solution:
         return dummy1.next
 ```
 
-### [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) 中等
+### ✅ 力扣 [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) 中等
 
 ```py
 # 无序数组找第 K 大的数，要求：1. 复杂度至少O(NlogN)
@@ -119,7 +121,7 @@ class Slutions:
         return heap[0]
 ```
 
-### [23. 合并 K 个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/) 困难
+### ✅ 力扣 [23. 合并 K 个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/) 困难
 
 ```py
 # Definition for singly-linked list.
@@ -160,7 +162,7 @@ class Solution:
         return mergeList(self.mergeKLists(left), self.mergeKLists(right))
 ```
 
-### 01 排序，一个 01 数组，把所有 0 排在前面，1 排在后面, 返回交互次数
+### ✅ 5. 01 排序，一个 01 数组，把所有 0 排在前面，1 排在后面, 返回交互次数
 
 ```py
     def sort(self, nums):
@@ -181,7 +183,7 @@ class Solution:
         return swaps
 ```
 
-### 编写一个函数，计算字符串中含有的不同字符的个数。字符在ACSII范围内0-127，不在范围的不作统计
+### ✅ 7. 编写一个函数，计算字符串中含有的不同字符的个数。字符在ACSII范围内0-127，不在范围的不作统计
 
 ```py
 # 字符串字符-字符统计
@@ -196,7 +198,7 @@ def count_unique_characters(self, s):
     return len(unique_characters) - 1 
 ```
 
-### 有序数组中找出两个数满足相加之和等于目标数 target，返回两个目标值
+### ✅ 8. 有序数组中找出两个数满足相加之和等于目标数 target，返回两个目标值
 
 ```python
 def two_sum_sorted(numbers, target):
@@ -213,9 +215,131 @@ def two_sum_sorted(numbers, target):
     return []%
 ```
 
+### ✅ 力扣 25. K 个一组翻转链表
+
+```py
+class Solution:
+    # 反转链表的变种，拆分为子链表反转，条件判断，不足 k 把剩余子链表接到反转链表后返回
+    # 翻转一个子链表，并且返回新的头与尾
+    def reverse(self, head: ListNode, tail: ListNode):
+        prev = tail.next
+        p = head
+        while prev != tail:
+            nex = p.next
+            p.next = prev
+            prev = p
+            p = nex
+        return tail, head
+
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        dummy = ListNode(0)
+        dummy.next = head
+        pre = dummy
+
+        while head:
+            tail = pre
+            # 查看剩余部分长度是否大于等于 k
+            for i in range(k):
+                tail = tail.next
+                if not tail:
+                    return dummy.next
+            nex = tail.next
+            head, tail = self.reverse(head, tail)
+            # 把子链表重新接回原链表
+            pre.next = head
+            tail.next = nex
+            pre = tail
+            head = tail.next
+        
+        return dummy.next
+```
+
+### ❎ 力扣 93. 复原 IP 地址（类似）
+
+字符串数字中的数字可以重复使用，会有爆炸的结果，比如 '23'，输出结果 10000
+
+```py
+class Solution:
+    def restoreIpAddresses(self, s: str) -> List[str]:
+        def backtrack(start, path):
+            if start == len(s) and len(path) == 4:
+                result.append(".".join(path))
+                return
+            if start >= len(s) or len(path) >= 4:
+                return
+            
+            for length in range(1, min(4, len(s) - start) + 1):
+                segment = s[start:start + length]
+                if is_valid(segment):
+                    path.append(segment)
+                    backtrack(start + length, path)
+                    path.pop()
+
+        def is_valid(segment):
+            if len(segment) > 1 and segment[0] == '0':
+                return False
+            num = int(segment)
+            return 0 <= num <= 255
+        
+        result = []
+        backtrack(0, [])
+        return result
+```
+
+### ❎ 力扣 14：最长公共前缀（类似）
+
+现给出目的ip地址和本地路由表，请输出最长匹配的路由，如果有多条，则**按给出的先后顺序**输出最先的，如果没有匹配的，输出字符串empty, 输入参数第一个为目的ip地址，十进制表示的字符串，第二个参数为n整数，表示路由表中路由的数量。
+
+如上题型，可转换为最长公共前缀匹配。
+
+```py
+def find_longest_matching_route(ip_address, n, routes):
+    matching_routes = []
+    max_matching_prefix_len = 0
+
+    for i in range(n):
+        route = routes[i]
+        prefix_len = int(route.split('/')[1])
+        
+        # 将 IP 地址和路由前缀都转换为整数形式，便于比较
+        ip_int = int(''.join(ip_address.split('.')))
+        prefix_int = int(''.join(route.split('/')[0].split('.'))) 
+        
+        # 计算路由前缀的掩码
+        mask = (1 << 32) - (1 << (32 - prefix_len))
+        
+        # 判断 IP 地址是否匹配路由前缀
+        if (ip_int & mask) == (prefix_int & mask) and prefix_len >= max_matching_prefix_len:
+            matching_routes.append(route)
+            max_matching_prefix_len = prefix_len
+
+    return matching_routes[0] if len(matching_routes) > 0 else "empty"
+```
+
+### ✅ 力扣 3. 无重复字符的最长子串
+
+```py
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_set = set()
+        max_length = 0
+        left = 0
+
+        for right in range(len(s)):
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
+            char_set.add(s[right])
+            max_length = max(max_length, right - left + 1)
+
+        return max_length
+```
+
 ## 自拟题目
 
-### 我有一台机器，1T 数据量，1 文件，内存：30G，CPU：10 个，对 1 T 的数据进行排序，输出排序结果到文件
+自拟题目，复杂度不一，有些仅实现伪代码，简单的则实际写完整。
+
+### 1. 我有一台机器，1T 数据量，1 文件，内存：30G，CPU：10 个，对 1 T 的数据进行排序，输出排序结果到文件
 
 思路：
 
@@ -267,9 +391,9 @@ class Solution:
 
 半小时，实现伪代码，完成度如上，没写完。
 
-### 实现一个 MergeSort，内存占用最小
+### ✅ 2. 实现一个 MergeSort，内存占用最小
 
-白板写代码，有点紧张（写得很快），知道如何实现，hasNext 逻辑写的有问题，把放迭代器第一个元素给写进 hasNext 中了，面试官提示没返回 Boolean 类型值，还是没反应过来。。。
+白板写代码，有点紧张（写得很快），知道如何实现，hasNext 逻辑写的有问题，把放迭代器第一个元素给写进 hasNext 中了，面试官提示没返回 Boolean 类型值，有提示修改后依然有点问题。
 
 ```java
 import java.util.ArrayList;
@@ -367,4 +491,3 @@ public class Merge {
     }
 }
 ```
-

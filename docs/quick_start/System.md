@@ -5,7 +5,7 @@ sidebar_label: 系统
 slug: /quick-start/system
 ---
 
-***TODO: 待完善 操作系统***
+***TODO: 待完善 操作系统，预留原有内容，学习一些特殊 md 写法***
 
 :::warning
 
